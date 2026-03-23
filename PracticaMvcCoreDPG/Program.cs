@@ -51,7 +51,7 @@ app.UseSession();
 app.UseMvc(routes =>
 {
     routes.MapRoute(name: "default", template: "{controller=Libros}/{action=Libros}/{id?}");
-    routes.MapRoute(name: "perfil", template: "{controller=Libros}/{action=Perfil}/{id?}");
+    
 });
 
 
