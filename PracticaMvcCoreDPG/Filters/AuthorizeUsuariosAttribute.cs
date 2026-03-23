@@ -26,22 +26,7 @@ namespace PracticaMvcCoreDPG.Filters
 
             var tempData =
                 provider.LoadTempData(context.HttpContext);
-            if(controller == null)
-            {
-                tempData["controller"] = "Libros";
-            }
-            else
-            {
-                context.RouteData.Values["controller"].ToString();
-            }
-            if (action == null)
-            {
-                tempData["action"] = "Perfil";
-            }
-            else
-            {
-                context.RouteData.Values["action"].ToString();
-            }
+            
             if (id != null)
             {
                 tempData["id"] = id.ToString();

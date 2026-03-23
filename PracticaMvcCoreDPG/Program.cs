@@ -43,7 +43,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseAuthorization();
+
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -51,7 +51,7 @@ app.UseSession();
 app.UseMvc(routes =>
 {
     routes.MapRoute(name: "default", template: "{controller=Libros}/{action=Libros}/{id?}");
-    
+
 });
 
 

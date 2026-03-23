@@ -113,11 +113,6 @@ namespace PracticaMvcCoreDPG.Controllers
             List<VistaPedidos> pedidos = await this.repo.GetPedidosAsync(idUsuario);
             return View(pedidos);
         }
-        public async Task <IActionResult> _PerfilUsuario()
-        {
-            int idUsuario = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            Usuarios usuario = await this.repo.DetallesUsuarioAsync(idUsuario);
-            return PartialView("_PerfilUsuario", usuario);
-        }
+        
     }
 }
