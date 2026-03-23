@@ -96,7 +96,7 @@ namespace PracticaMvcCoreDPG.Controllers
                 await this.repo.InsertarCompraAsync(libros, idUsuario);
                 HttpContext.Session.Remove("IDSLIBROS");
             }
-            return RedirectToAction("Libros");
+            return RedirectToAction("Pedidos","Libros");
         }
         [AuthorizeUsuarios]
         public async Task<IActionResult> Perfil()
@@ -112,6 +112,12 @@ namespace PracticaMvcCoreDPG.Controllers
             int idUsuario = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             List<VistaPedidos> pedidos = await this.repo.GetPedidosAsync(idUsuario);
             return View(pedidos);
+        }
+        public async Task <IActionResult> _PerfilUsuario()
+        {
+            int idUsuario = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            Usuarios usuario = await this.repo.DetallesUsuarioAsync(idUsuario);
+            return PartialView("_PerfilUsuario", usuario);
         }
     }
 }

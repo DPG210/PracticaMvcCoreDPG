@@ -12,5 +12,6 @@ namespace PracticaMvcCoreDPG.Data
         public DbSet<VistaPedidos> VistaPedidos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Generos> Generos { get; set; }
+        
     }
 }

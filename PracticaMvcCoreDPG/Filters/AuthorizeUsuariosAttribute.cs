@@ -13,9 +13,9 @@ namespace PracticaMvcCoreDPG.Filters
 
             var user = context.HttpContext.User;
             string controller =
-                context.RouteData.Values["controller"].ToString();
+                context.RouteData.Values["controller"].ToString() ;
             string action =
-                context.RouteData.Values["action"].ToString();
+                context.RouteData.Values["action"].ToString() ;
             var id =
                 context.RouteData.Values["id"];
 
@@ -26,7 +26,22 @@ namespace PracticaMvcCoreDPG.Filters
 
             var tempData =
                 provider.LoadTempData(context.HttpContext);
-
+            if(controller == null)
+            {
+                tempData["controller"] = "Libros";
+            }
+            else
+            {
+                context.RouteData.Values["controller"].ToString();
+            }
+            if (action == null)
+            {
+                tempData["action"] = "Perfil";
+            }
+            else
+            {
+                context.RouteData.Values["action"].ToString();
+            }
             if (id != null)
             {
                 tempData["id"] = id.ToString();
@@ -39,13 +54,11 @@ namespace PracticaMvcCoreDPG.Filters
             tempData["controller"] = controller;
             tempData["action"] = action;
 
+
             provider.SaveTempData(context.HttpContext, tempData);
 
 
-            if (user.Identity.IsAuthenticated == false)
-            {
-                context.Result = GetRoute("Managed", "Login");
-            }
+            
 
 
         }

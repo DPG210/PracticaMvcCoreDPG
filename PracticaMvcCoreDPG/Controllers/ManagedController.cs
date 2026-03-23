@@ -39,10 +39,14 @@ namespace PracticaMvcCoreDPG.Controllers
                     new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync
                     (CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal);
+
                 string controller =
-                    TempData["controller"].ToString();
+                        TempData["controller"].ToString();
                 string action =
-                    TempData["action"].ToString();
+                        TempData["action"].ToString();
+                
+                
+                
                 if (TempData["id"] != null)
                 {
                     string id =
@@ -65,12 +69,14 @@ namespace PracticaMvcCoreDPG.Controllers
         {
             await HttpContext.SignOutAsync
                 (CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login","Managed" );
         }
 
         public IActionResult ErrorAcceso()
         {
             return View();
         }
+        
+        
     }
  }

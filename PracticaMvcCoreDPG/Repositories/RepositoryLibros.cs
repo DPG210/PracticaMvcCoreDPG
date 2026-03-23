@@ -76,24 +76,25 @@ namespace PracticaMvcCoreDPG.Repositories
         }
         public async Task InsertarCompraAsync(List<Libros> libros, int idUsuario)
         {
-            int nuevoPedido = GetMaxIdPedido() + 1;
+            
             int nuevoFactura = GetMaxIdFactura() + 1;
             DateTime fechaActual = DateTime.Now;
 
             foreach(var item in libros)
             {
-                Pedido pedido = new Pedido
+                Pedido ped = new Pedido
                 {
-                    IdPedido = nuevoPedido,
+                    IdPedido = GetMaxIdPedido() + 1,
                     IdFactura = nuevoFactura,
                     Fecha = fechaActual,
                     IdLibro = item.IdLibro,
                     IdUsuario = idUsuario,
                     Cantidad = 1
                 };
-                this.context.Pedidos.Add(pedido);
+                this.context.Pedidos.Add(ped);
+                await this.context.SaveChangesAsync();
             }
-            await this.context.SaveChangesAsync();
+           
         }
 
         public async Task<Usuarios> LogInUsuarioAsync(string username, string password)

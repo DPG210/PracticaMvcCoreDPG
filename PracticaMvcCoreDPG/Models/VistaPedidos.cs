@@ -8,7 +8,7 @@ namespace PracticaMvcCoreDPG.Models
     {
         [Key]
         [Column("IDVISTAPEDIDOS")]
-        public int IdVista { get; set; }
+        public long IdVista { get; set; }
 
         [Column("IdUsuario")]
         public int  IdUsuario { get; set; }
