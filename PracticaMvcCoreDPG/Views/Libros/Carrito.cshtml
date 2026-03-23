@@ -1,0 +1,51 @@
+﻿@model List<Libros>
+
+<h1>Cubos Session</h1>
+@if (Context.Session.GetString("IDSLIBROS") == null)
+{
+    <h1>No existen empleados</h1>
+}
+else
+{
+    @if (Model != null)
+    {
+        <table class="table table-striped-colums">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Editorial</th>
+                    <th>Precio</th>
+                    <th>IdGenero</th>
+                    <th>Portada</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(Libros libro in Model)
+                {
+                    <tr>
+                        <td>@libro.IdLibro</td>
+                        <td>@libro.Titulo</td>
+                        <td>@libro.Autor</td>
+                        <td>@libro.Editorial</td>
+                        <td>@libro.Precio</td>
+                        <td>@libro.IdGenero</td>
+                        <td>
+                            <img src="~/images/@libro.Portada" style="width:50px;height:50px" />
+                        </td>
+                        
+                        <td>
+                            <a asp-controller="Libros" asp-action="Carrito" asp-route-ideliminar="@libro.IdLibro" class="btn btn-warning">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <form method="post" asp-route-accion="comprar">
+            <button>Realizar carrito</button>
+        </form>
+    }
+}

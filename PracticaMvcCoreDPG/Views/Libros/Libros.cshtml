@@ -1,0 +1,75 @@
+﻿@model IEnumerable<PracticaMvcCoreDPG.Models.Libros>
+@{
+    List<int> ids = Context.Session.GetObject<List<int>>("IDSLIBROS");
+}
+@{
+    ViewData["Title"] = "Libros";
+}
+
+<h1>Libros</h1>
+
+<p>
+    <a asp-controller="Libros" asp-action="Carrito"> Carrito</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdLibro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Editorial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Portada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdGenero)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdLibro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Editorial)
+            </td>
+            <td>
+                <img src="~/images/@item.Portada" style="width:100px; height:100px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdGenero)
+            </td>
+            <td>
+                <a asp-controller="Libros" asp-action="Libros" asp-route-idlibro="@item.IdLibro" class="btn btn-dark">Añadir al carrito</a>
+            </td>
+            <td>
+                <a asp-controller="Libros" asp-action="Detalles" asp-route-idlibro="@item.IdLibro">Detalles</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

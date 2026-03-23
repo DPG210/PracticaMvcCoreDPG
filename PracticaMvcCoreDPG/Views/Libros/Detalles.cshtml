@@ -1,0 +1,46 @@
+﻿@model Libros
+
+@{
+    ViewData["Title"] = "DetallesCubos";
+}
+
+<h1>Detalles Libro</h1>
+@if (Model != null)
+{
+    <table class="table table-striped-colums">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Editorial</th>
+                <th>Precio</th>
+                <th>IdGenero</th>
+                <th>Portada</th>
+                <th>Resumen</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            <tr>
+                <td>@Model.IdLibro</td>
+                <td>@Model.Titulo</td>
+                <td>@Model.Autor</td>
+                <td>@Model.Editorial</td>
+                <td>@Model.Precio</td>
+                <td>@Model.IdGenero</td>
+                <td>
+                    <img src="~/images/@Model.Portada" style="width:50px;height:50px" />
+                </td>
+                <td>
+                    @Model.Resumen
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+}
+<div>
+    <a asp-action="Libros">Back to List</a>
+</div>
